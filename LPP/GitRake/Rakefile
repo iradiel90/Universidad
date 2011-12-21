@@ -1,0 +1,26 @@
+require 'rake'
+require 'rake/testtask'
+ 
+task :default => [:test]
+ 
+desc "Ejecutando los tests"
+Rake::TestTask.new("test") { |t|
+  t.pattern = 'test/*_test.rb'  # busca los ficheros acabados en '_test.rb'
+  t.verbose = true
+  t.warning = true
+}
+
+desc "Crear un tar.gz"
+task :dist do  
+	sh %{ tar czvf GitRake.tar.gz /home/iradiel/Documentos/Universidad/LPP/GitRake/* }
+end
+
+desc "Crear un zip"
+task :zip do
+	sh %{ zip GitRake.zip /home/iradiel/Documentos/Universidad/LPP/GitRake/* }
+end
+
+desc "Limpia los archivos temporales"
+task :clean do
+	sh %{ rm -r /home/iradiel/Documentos/Universidad/LPP/GitRake/*~ }
+end
