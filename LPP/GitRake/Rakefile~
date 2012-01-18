@@ -1,5 +1,6 @@
 require 'rake'
 require 'rake/testtask'
+load 'lib/DSL_HTML.rb'
  
 task :default => [:test]
  
@@ -12,15 +13,17 @@ Rake::TestTask.new("test") { |t|
 
 desc "Crear un tar.gz"
 task :dist do  
-	sh %{ tar czvf GitRake.tar.gz /home/iradiel/Documentos/Universidad/LPP/GitRake/* }
+	sh %{ tar czvf GitRake.tar.gz ../GitRake/* }
 end
 
 desc "Crear un zip"
 task :zip do
-	sh %{ zip GitRake.zip /home/iradiel/Documentos/Universidad/LPP/GitRake/* }
+	sh %{ zip GitRake.zip ../GitRake/* }
 end
 
 desc "Limpia los archivos temporales"
 task :clean do
-	
+	sh %{ rm -f /home/iradiel/Documentos/Universidad/LPP/GitRake/*~ }
+	sh %{ rm -f /home/iradiel/Documentos/Universidad/LPP/GitRake/lib/*~ }
+	sh %{ rm -f /home/iradiel/Documentos/Universidad/LPP/GitRake/test/*~ }
 end
